@@ -56,7 +56,7 @@ TEST(TicTacToeBoardTest, turnOneGetPiece)
 	TicTacToeBoard board;
 	board.placePiece(0,0);
 	Piece actual = board.getPiece(0,0);
-	Piece expected = Blank;
+	Piece expected = X;
 	ASSERT_EQ(expected, actual);
 }
 
@@ -133,6 +133,92 @@ TEST(TicTacToeBoardTest, ToggleTurnTwo)
 	ASSERT_EQ(expected, actual);
 }
 
+/*CHECK FOR WINNER*/
+TEST(TicTacToeBoardTest, checkWinAcross1)
+{
+	TicTacToeBoard board;
+	board.placePiece(0,0);
+	board.placePiece(1,0);
+	board.placePiece(0,1);
+	board.placePiece(1,1);
+	board.placePiece(0,2);
+	Piece actual = board.getWinner();
+	Piece expected = X;
+	ASSERT_EQ(expected, actual);
+}
+
+TEST(TicTacToeBoardTest, checkWinAcross2)
+{
+	TicTacToeBoard board;
+	board.placePiece(1,0);
+	board.placePiece(0,0);
+	board.placePiece(1,1);
+	board.placePiece(0,1);
+	board.placePiece(1,2);
+	Piece actual = board.getWinner();
+	Piece expected = X;
+	ASSERT_EQ(expected, actual);
+}
+
+TEST(TicTacToeBoardTest, checkWinAcross3)
+{
+	TicTacToeBoard board;
+	board.placePiece(0,0);
+	board.placePiece(2,0);
+
+	board.placePiece(0,1);
+	board.placePiece(2,1);
+
+	board.placePiece(1,1);
+	board.placePiece(2,2);
+	Piece actual = board.getWinner();
+	Piece expected = O;
+	ASSERT_EQ(expected, actual);
+}
+
+TEST(TicTacToeBoardTest, checkWinDown1)
+{
+	TicTacToeBoard board;
+	board.placePiece(1,0);
+	board.placePiece(0,0);
+	board.placePiece(1,1);
+	board.placePiece(0,1);
+	board.placePiece(2,2);
+	board.placePiece(0,2);
+	Piece actual = board.getWinner();
+	Piece expected = O;
+	ASSERT_EQ(expected, actual);
+}
+
+TEST(TicTacToeBoardTest, checkWinDiagonal1)
+{
+	TicTacToeBoard board;
+	board.placePiece(0,0);
+	board.placePiece(1,0);
+
+	board.placePiece(1,1);
+	board.placePiece(1,2);
+
+	board.placePiece(2,2);
+	Piece actual = board.getWinner();
+	Piece expected = X;
+	ASSERT_EQ(expected, actual);
+}
+
+TEST(TicTacToeBoardTest, checkWinDiagonal2)
+{
+	TicTacToeBoard board;
+	board.placePiece(2,0);
+	board.placePiece(1,0);
+
+	board.placePiece(1,1);
+	board.placePiece(1,2);
+
+	board.placePiece(0,2);
+	Piece actual = board.getWinner();
+	Piece expected = X;
+	ASSERT_EQ(expected, actual);
+}
 
 /*SANITY CHECK*/
 
